@@ -44,7 +44,8 @@ private static void CreateDeviceGUI()
 {
     DeviceUI deviceUI = new DeviceUI();
     JPanel devicePanel = deviceUI.getDevicePanel();
-
+    JButton addButton = deviceUI.getAddDeviceButton();
+    mainFrame.add(addButton);
 
 
     mainFrame.setContentPane(devicePanel);
