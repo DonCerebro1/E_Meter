@@ -10,6 +10,7 @@ import java.awt.event.ActionListener;
 public class Main
 {
     static JFrame mainFrame = new JFrame();
+
     public static void main(String[] args)
     {
         SwingUtilities.invokeLater(new Runnable()
@@ -22,6 +23,8 @@ public class Main
             }
         });
     }
+
+
 
 private static void CreateGUI()
 {
@@ -42,10 +45,11 @@ private static void CreateGUI()
 //Funktioniert aber daß Frame ändert sich erst wenn man das programm auf den anderen Bildschirm zieht
 private static void CreateDeviceGUI()
 {
+
     DeviceUI deviceUI = new DeviceUI();
     JPanel devicePanel = deviceUI.getDevicePanel();
     JButton addButton = deviceUI.getAddDeviceButton();
-    mainFrame.add(addButton);
+    //mainFrame.add(addButton);
 
 
     mainFrame.setContentPane(devicePanel);
@@ -69,6 +73,7 @@ public static JMenuBar Menu()
         @Override
         public void actionPerformed(ActionEvent e) {
                 CreateDeviceGUI();
+
 
         }
     });

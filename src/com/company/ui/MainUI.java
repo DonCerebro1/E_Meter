@@ -1,6 +1,8 @@
 package com.company.ui;
 
 import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class MainUI
 {
@@ -10,10 +12,8 @@ public class MainUI
     private JTextField textField3;
 
 
-    public JPanel getRootPanel()
-{
-    return rootPanel;
-}
+
+    public JPanel getRootPanel(){return rootPanel;}
 
 }
 
