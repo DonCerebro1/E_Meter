@@ -56,7 +56,6 @@ private static void CreateDeviceGUI()
 
 }
 
-
 public static JMenuBar Menu()
 {
     JMenuBar bar = new JMenuBar();
