@@ -1,21 +1,27 @@
 package com.company.ui;
 
+import com.company.Main;
+
 import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
-public class DeviceUI
-{
-    private JPanel DevicePanel;
-    private JTextField textField1;
-    private JTextField textField2;
-    private JTextField textField3;
-    private JButton homeButton;
-    private JButton addDeviceButton;
+public class DeviceUI extends Main {
+    private JPanel devicePanel;
+    private JButton backButton;
 
-    public JPanel getDevicePanel(){return DevicePanel;}
-    public JButton getAddDeviceButton(){return addDeviceButton;}
+    public DeviceUI() {
+        backButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if(backButton.isEnabled()){
+                    createGUI();
+                }
+            }
+        });
+    }
 
-    public DeviceUI()
-    {
-
+    public JPanel getDevicePanel() {
+        return devicePanel;
     }
 }

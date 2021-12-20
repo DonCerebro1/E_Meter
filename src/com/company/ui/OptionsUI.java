@@ -6,12 +6,11 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class AddDeviceUI extends Main {
-
-    private JPanel addDevicePanel;
+public class OptionsUI extends Main {
+    private JPanel optionPanel;
     private JButton backButton;
 
-    public AddDeviceUI() {
+    public OptionsUI() {
         backButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -22,7 +21,7 @@ public class AddDeviceUI extends Main {
         });
     }
 
-    public JPanel getAddDevicePanel() {
-        return addDevicePanel;
+    public JPanel getOptionPanel() {
+        return optionPanel;
     }
 }
