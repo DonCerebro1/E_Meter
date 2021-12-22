@@ -7,7 +7,7 @@ Roadmap:
 Release Features:
     - Erstellen von unterschiedlichen Geräte mit Namen, Watt und Nutzungsdauer
     - Berechnung der Stromkosten in Deutschland vom durchschnittspreis des Landes (in Euro)
-
+    - stüdnliche Berechnung der Stromkosten(Online und Offline)
 Planned Features:
     - Auswahl von den gängigsten Stromanbiertern in Deutschland mit deren aktuellen Strompreisen
     - mehr Länder aus Europa
