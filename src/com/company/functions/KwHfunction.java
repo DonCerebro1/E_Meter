@@ -1,17 +1,20 @@
 package com.company.functions;
 
+import com.company.Data.List;
 import com.company.Data.Price;
+import com.company.Main;
+
 
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 
 import java.util.Calendar;
 
-public class KwHfunction implements Price {
+public class KwHfunction implements Price, List {
     public Calendar calendar;
     public SimpleDateFormat timeFormat;
     public String time;
-    double watt ;
+    double watt;
     public String name;
     public double totalKwH;
     public double hour = 1;
@@ -23,10 +26,15 @@ public class KwHfunction implements Price {
      * toDo: Wenn eine stunde um ist Preis aktualiesieren und alle anderen verbunden Werte (vielleicht mit einem int und for-schleifen counter ?). Zeitspeichern wenn Programm zu ist.
      */
 
+
+
     public KwHfunction() {
-           //Für Test zwecke
-           System.out.println("Current KwH: " + kWh);
-           System.out.println("Current Watt: " + watt);
+           /**
+           Für Test zwecke
+            */
+
+           //System.out.println("Current KwH: " + kWh);
+           //System.out.println("Current Watt: " + watt);
 
 
            //Wenn aktiviert öffnet sich dass Fenster nicht. Thread hinzufügen?
