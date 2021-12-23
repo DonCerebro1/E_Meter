@@ -16,7 +16,7 @@ public class DeviceUI extends Main implements List {
     private JPanel devicePanel;
     private JButton backButton;
     private JSplitPane splitPane;
-    JLabel label = new JLabel();
+    private JLabel label;
 
 
     public DeviceUI() {
@@ -34,7 +34,13 @@ public class DeviceUI extends Main implements List {
          * Bug wenn Gerät hinzugefügt wird verdoppeln sich teilweise die Räume auf
          * der Linken seite ------> liegt am Textfield "WOhnbereich" im AddDeviceUI
          * wenn die liste geöffnet wird und wieder zurück in Menu dann wieder auf die
-         * Liste verdoppeln sich die Einträge*/
+         * Liste verdoppeln sich die Einträge
+         *
+         * Beim Drücken der Linkenseite sollen nur die Geräte angezeigt werden, die
+         * für den Raum vorgesehen sind.
+         *
+         * Muß Dauerhaft abegspeichert werden die Liste
+         * */
 
         roomList.setModel(roomModel);
         //roomModel.addElement(new HomeRooms("Badezimmer"));
@@ -51,8 +57,8 @@ public class DeviceUI extends Main implements List {
         list.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
             @Override
             public void valueChanged(ListSelectionEvent e) {
-                DeviceList dl = list.getSelectedValue();
-                //label.setText("Name: " + dl.getName() + "Watt: " + dl.getWatt() + "Nutzungdauer: " + dl.getUsageTime());
+                HomeRooms dl = roomList.getSelectedValue();
+                //label.setText(dl.getName());
 
             }
         });

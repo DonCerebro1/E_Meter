@@ -13,6 +13,7 @@ import com.company.functions.KwHfunction;
 
 public class MainUI extends KwHfunction
 {
+
     private JPanel rootPanel;
     private JButton optionsButton;
     private JButton addDevicesButton;
@@ -23,7 +24,7 @@ public class MainUI extends KwHfunction
     private JPanel firstPanel;
     private JTextField kWhTextField;
     private JTextField currencyTextField;
-    private JLabel dateLabel;
+    private JLabel versionLabel;
     private Calendar calendar;
     private SimpleDateFormat timeFormat;
     private String time;

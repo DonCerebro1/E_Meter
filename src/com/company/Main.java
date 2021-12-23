@@ -11,6 +11,7 @@ public class Main
 {
     static JFrame mainFrame = new JFrame();
 
+
     public static void main(String[] args)
     {
         SwingUtilities.invokeLater(new Runnable()
