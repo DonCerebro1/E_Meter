@@ -2,9 +2,11 @@ package com.company.functions;
 
 import com.company.Data.List;
 import com.company.Data.Price;
+import com.company.DeviceList;
 import com.company.Main;
 
 
+import java.awt.event.ActionEvent;
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 
@@ -26,12 +28,27 @@ public class KwHfunction implements Price, List {
      * toDo: Wenn eine stunde um ist Preis aktualiesieren und alle anderen verbunden Werte (vielleicht mit einem int und for-schleifen counter ?). Zeitspeichern wenn Programm zu ist.
      */
 
+    /**
+     Für Test zwecke
+     Checkt ob Element ist Ausgewählt und nicht Leer
+     */
+    public void actionPerformed(ActionEvent e) {
+        if (e.getActionCommand().equals("Check")) {
+            int index = list.getSelectedIndex();
+            System.out.println("Index Selected: " + index);
+            DeviceList s = list.getSelectedValue();
+            System.out.println("Value Selected: " + s);
+        }
+    }
 
 
     public KwHfunction() {
            /**
            Für Test zwecke
             */
+
+
+
 
            //System.out.println("Current KwH: " + kWh);
            //System.out.println("Current Watt: " + watt);
@@ -62,6 +79,15 @@ public class KwHfunction implements Price, List {
     }
 
     public String consumption(){
+
+        if(!model.isEmpty()){
+            int index = list.getSelectedIndex();
+            System.out.println("Index selected: " + index);
+            DeviceList s =  list.getSelectedValue();
+            System.out.println("Value Selected: " + s);
+
+        }
+
         totalKwH = kWh * hour ;
 
         return df.format(totalKwH) + " KwH";

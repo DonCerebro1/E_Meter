@@ -20,7 +20,7 @@ public class Main
             public void run() {
                 //mit mehreren Threads arbeiten
                 createGUI();
-                //new KwHfunction();
+                new KwHfunction();
 
 
             }
