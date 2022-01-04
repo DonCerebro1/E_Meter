@@ -9,7 +9,7 @@ import java.awt.event.ActionListener;
 
 public class Main
 {
-    static JFrame mainFrame = new JFrame();
+     static JFrame mainFrame = new JFrame();
 
 
     public static void main(String[] args)
@@ -33,7 +33,7 @@ public class Main
     mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     mainFrame.setContentPane(root);
     mainFrame.pack();
-    mainFrame.setTitle("Prototype");
+    mainFrame.setTitle("Prototype unstable");
     mainFrame.setLocationRelativeTo(null);                                  //wenn das an ist und durch btn ein fenster geöffnet wird und wieder zurück springt er auf den ersten Bildschirm wieder zurück
     mainFrame.setSize(500,500);
     mainFrame.setResizable(false);

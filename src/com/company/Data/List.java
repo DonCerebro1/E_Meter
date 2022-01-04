@@ -4,6 +4,7 @@ import com.company.DeviceList;
 import com.company.HomeRooms;
 
 import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
 import java.util.ArrayList;
 
 public interface List {
@@ -15,4 +16,8 @@ public interface List {
     DefaultListModel<DeviceList> model = new DefaultListModel<>();
     JList<HomeRooms> roomList = new JList<>();
     DefaultListModel<HomeRooms> roomModel = new DefaultListModel<>();
+    DefaultTableModel tm = new DefaultTableModel();
+
+
+
 }

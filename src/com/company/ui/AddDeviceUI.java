@@ -6,6 +6,7 @@ import com.company.HomeRooms;
 import com.company.Main;
 
 import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -37,55 +38,23 @@ public class AddDeviceUI extends Main implements List {
             }
         });
         /***
-         * Darf nur ein Raum gleichzeitig ausgewählt werden
-         * Darf nur jeweils ein Zimmer vom gleichen Typ erstellt werden!!
+         * Aktuell verdoppeln sich Spalten und Zeilen und sind Editable
+         * Inhalt vom Textfield geht aktuell nur maximal ein Textfield
+         * und packt es auch nur in die erste Zeile und nicht weiter
          */
         addButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                //Add Device here.....
                 if(addButton.isEnabled()){
-                    model.addElement(new DeviceList(deviceNameTextfield.getText(),deviceWattTextfield.getText(),deviceNutzungTextfield.getText()));
-                }else if(addButton.isEnabled() && schlafzimmerRadioButton.isEnabled()){
-                    model.addElement(new DeviceList(deviceNameTextfield.getText(),deviceWattTextfield.getText(),deviceNutzungTextfield.getText()));
-                }else if(addButton.isEnabled() && kücheRadioButton.isEnabled()){
-                    model.addElement(new DeviceList(deviceNameTextfield.getText(),deviceWattTextfield.getText(),deviceNutzungTextfield.getText()));
-                }else if(addButton.isEnabled() && badezimmerRadioButton.isEnabled()){
-                    model.addElement(new DeviceList(deviceNameTextfield.getText(),deviceWattTextfield.getText(),deviceNutzungTextfield.getText()));
+                    //tm.insertRow(0,new Object[]{deviceNameTextfield.getText()});
+
                 }
+
             }
         });
-        radioButtonWhz.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                if(radioButtonWhz.isEnabled()){
-                    roomModel.addElement(new HomeRooms("Wohnzimmer"));
-                }
-            }
-        });
-        schlafzimmerRadioButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                if(schlafzimmerRadioButton.isEnabled()){
-                    roomModel.addElement(new HomeRooms("Schlafzimmer"));
-                }
-            }
-        });
-        kücheRadioButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                if(kücheRadioButton.isEnabled()){
-                    roomModel.addElement(new HomeRooms("Küche"));
-                }
-            }
-        });
-        badezimmerRadioButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                if(badezimmerRadioButton.isEnabled()){
-                    roomModel.addElement(new HomeRooms("Badezimmer"));
-                }
-            }
-        });
+
+
     }
     public JPanel getAddDevicePanel() {
         return addDevicePanel;
