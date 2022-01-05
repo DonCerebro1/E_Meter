@@ -33,6 +33,10 @@ public class MainUI extends KwHfunction
     public MainUI() {
         kWhTextField.setText(String.valueOf(consumption()));
         currencyTextField.setText(String.valueOf(euPrices()));
+
+        //Disables Border for Textfields
+        kWhTextField.setBorder(null);
+        currencyTextField.setBorder(null);
     }
 
     public JPanel getRootPanel(){return rootPanel;}

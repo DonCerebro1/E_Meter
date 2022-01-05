@@ -16,7 +16,17 @@ public interface List {
     DefaultListModel<DeviceList> model = new DefaultListModel<>();
     JList<HomeRooms> roomList = new JList<>();
     DefaultListModel<HomeRooms> roomModel = new DefaultListModel<>();
-    DefaultTableModel tm = new DefaultTableModel();
+
+    //Makes JTable rows and column non Editable
+    DefaultTableModel tm = new DefaultTableModel(){
+
+
+        @Override
+        public boolean isCellEditable(int row, int column){
+            return false;
+        }
+
+    };
 
 
 

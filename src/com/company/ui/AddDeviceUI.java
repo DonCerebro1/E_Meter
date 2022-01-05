@@ -38,7 +38,6 @@ public class AddDeviceUI extends Main implements List {
             }
         });
         /***
-         * Aktuell verdoppeln sich Spalten und Zeilen und sind Editable
          * Inhalt vom Textfield geht aktuell nur maximal ein Textfield
          * und packt es auch nur in die erste Zeile und nicht weiter
          */
@@ -47,7 +46,7 @@ public class AddDeviceUI extends Main implements List {
             public void actionPerformed(ActionEvent e) {
                 //Add Device here.....
                 if(addButton.isEnabled()){
-                    //tm.insertRow(0,new Object[]{deviceNameTextfield.getText()});
+                    tm.insertRow(0,new Object[]{deviceNameTextfield.getText()});
 
                 }
 
