@@ -9,8 +9,10 @@ import java.awt.event.ActionListener;
 public class DeviceUI extends Main implements List {
     private JPanel devicePanel;
     private JButton backButton;
-    private JTable table1;
+    private JTable tableLivingRoom;
     private JScrollPane sp;
+    private JTable tableKitchen;
+    private JTable tableBedroom;
 
     public DeviceUI() {
         backButton.addActionListener(new ActionListener() {
@@ -26,19 +28,19 @@ public class DeviceUI extends Main implements List {
     }
 
     private void createTable(){
+        tableKitchen.setModel(tm);
+        tableBedroom.setModel(tm);
+        tableLivingRoom.setModel(tm);
 
-        table1.setModel(tm);
-        tm.addColumn("Zimmer");
         tm.addColumn("Name");
         tm.addColumn("Watt");
         tm.addColumn("Nutzungsdauer");
 
-        tm.insertRow(0,new Object[]{"Wohnzimmer"} );
-        tm.insertRow(0,new Object[]{"Küche"} );
-        tm.insertRow(0,new Object[]{"Schlafzimmer"} );
-        tm.insertRow(0,new Object[]{"Badezimmer"} );
+        //Maximum for Column and rows und can be created
+        tm.setColumnCount(3);
+        tm.setRowCount(5);
 
-        tm.setColumnCount(4);
+
 
 
     }

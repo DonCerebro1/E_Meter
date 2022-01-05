@@ -45,7 +45,7 @@ public class AddDeviceUI extends Main implements List {
             @Override
             public void actionPerformed(ActionEvent e) {
                 //Add Device here.....
-                if(addButton.isEnabled()){
+                if(addButton.isEnabled() && radioButtonWhz.getModel().isSelected()){
                     tm.insertRow(0,new Object[]{deviceNameTextfield.getText()});
 
                 }
