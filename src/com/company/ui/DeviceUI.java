@@ -22,16 +22,17 @@ public class DeviceUI extends Main implements List {
                     createGUI();
                 }
             }
-
         });
         createTable();
     }
 
     private void createTable(){
+        //sets model for all JTables
         tableKitchen.setModel(tm);
         tableBedroom.setModel(tm);
         tableLivingRoom.setModel(tm);
 
+        //adds columns
         tm.addColumn("Name");
         tm.addColumn("Watt");
         tm.addColumn("Nutzungsdauer");
@@ -39,15 +40,9 @@ public class DeviceUI extends Main implements List {
         //Maximum for Column and rows und can be created
         tm.setColumnCount(3);
         tm.setRowCount(5);
-
-
-
-
     }
     
     public JPanel getDevicePanel() {
         return devicePanel;
     }
-
-
 }
