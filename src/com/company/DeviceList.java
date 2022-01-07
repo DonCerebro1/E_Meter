@@ -2,8 +2,6 @@ package com.company;
 
 import com.company.Data.List;
 
-
-
 public class DeviceList implements List {
     int id;
     String name;
@@ -14,8 +12,6 @@ public class DeviceList implements List {
         this.name = deviceNameTextfield;
         this.watt = deviceWattTextfield;
         this.usageTime = deviceNutzungTextfield;
-
-
     }
 
     @Override

@@ -5,7 +5,7 @@ import com.company.Main;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
+import java.util.Vector;
 
 
 public class AddDeviceUI extends Main implements List {
@@ -19,16 +19,14 @@ public class AddDeviceUI extends Main implements List {
     private JRadioButton radioButtonWhz;
     private JRadioButton schlafzimmerRadioButton;
     private JRadioButton kücheRadioButton;
+    protected Vector<String> data = new Vector<>();
 
     public AddDeviceUI() {
-        //damit nur ein Button gleichzeitig ausgewählt werden kann
+        // so that only one button can be selected at a time
         ButtonGroup group = new ButtonGroup();
         group.add(radioButtonWhz);
         group.add(schlafzimmerRadioButton);
         group.add(kücheRadioButton);
-
-        //Gets String from Textfield and brings it up in JTables
-        String[][] data={{deviceNameTextfield.getText()},{deviceWattTextfield.getText()},{deviceNutzungTextfield.getText()}};
 
         backButton.addActionListener(new ActionListener() {
             @Override
@@ -39,17 +37,26 @@ public class AddDeviceUI extends Main implements List {
             }
         });
 
-        /***
-         * Inhalt vom Textfield geht aktuell nur maximal ein Textfield
-         * und packt es auch nur in die erste Zeile und nicht weiter
-         */
-        addButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                //Add Device here.....
-                if(addButton.isEnabled()){
-                    tm.insertRow(0,data);
-                }
+        addButton.addActionListener(e -> {
+            //Add Device here.....
+            data.addElement(deviceNameTextfield.getText());
+            data.addElement(deviceWattTextfield.getText());
+            data.addElement(deviceNutzungTextfield.getText());
+            if(addButton.isEnabled() && radioButtonWhz.isSelected()){
+                wTm.insertRow(0, data);
+            }
+            else {
+                System.out.println("Error");
+            }
+            if(addButton.isEnabled() && schlafzimmerRadioButton.isSelected()){
+                sTm.insertRow(0,data);
+            }else{
+                System.out.println("Error");
+            }
+            if(addButton.isEnabled() && kücheRadioButton.isSelected()){
+                kTm.insertRow(0,data);
+            }else{
+                System.out.println("Error");
             }
         });
     }

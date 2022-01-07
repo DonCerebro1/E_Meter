@@ -28,18 +28,35 @@ public class DeviceUI extends Main implements List {
 
     private void createTable(){
         //sets model for all JTables
-        tableKitchen.setModel(tm);
-        tableBedroom.setModel(tm);
-        tableLivingRoom.setModel(tm);
+        tableKitchen.setModel(kTm);
+        tableBedroom.setModel(sTm);
+        tableLivingRoom.setModel(wTm);
 
         //adds columns
-        tm.addColumn("Name");
-        tm.addColumn("Watt");
-        tm.addColumn("Nutzungsdauer");
+        //Table for Kitchen
+        kTm.addColumn("Name");
+        kTm.addColumn("Watt");
+        kTm.addColumn("Nutzungsdauer");
+
+        //Table for bedroom
+        sTm.addColumn("Name");
+        sTm.addColumn("Watt");
+        sTm.addColumn("Nutzungsdauer");
+
+        //Table for living room
+        wTm.addColumn("Name");
+        wTm.addColumn("Watt");
+        wTm.addColumn("Nutzungsdauer");
 
         //Maximum for Column and rows und can be created
-        tm.setColumnCount(3);
-        tm.setRowCount(5);
+        kTm.setColumnCount(3);
+        kTm.setRowCount(5);
+
+        sTm.setColumnCount(3);
+        sTm.setRowCount(5);
+
+        wTm.setColumnCount(3);
+        wTm.setRowCount(5);
     }
     
     public JPanel getDevicePanel() {

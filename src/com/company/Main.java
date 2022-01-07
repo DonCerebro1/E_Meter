@@ -1,6 +1,6 @@
 package com.company;
 
-import com.company.functions.KwHfunction;
+//import com.company.functions.KwHfunction;
 import com.company.ui.*;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -14,9 +14,9 @@ public class Main{
         {
             @Override
             public void run() {
-                //mit mehreren Threads arbeiten
+                //use more threads
                 createGUI();
-                new KwHfunction();
+               // new KwHfunction();
             }
         });
     }
@@ -28,7 +28,7 @@ public class Main{
     mainFrame.setContentPane(root);
     mainFrame.pack();
     mainFrame.setTitle("Prototype unstable");
-    mainFrame.setLocationRelativeTo(null);                                  //wenn das an ist und durch btn ein fenster geöffnet wird und wieder zurück springt er auf den ersten Bildschirm wieder zurück
+    mainFrame.setLocationRelativeTo(null);
     mainFrame.setSize(500,500);
     mainFrame.setResizable(false);
         JButton addBtn = ui.getAddDevicesButton();

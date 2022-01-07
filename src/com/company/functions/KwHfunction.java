@@ -3,12 +3,15 @@ package com.company.functions;
 import com.company.Data.List;
 import com.company.Data.Price;
 import com.company.DeviceList;
+import com.company.ui.AddDeviceUI;
+
 import java.awt.event.ActionEvent;
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
-public class KwHfunction implements Price, List {
+
+public class KwHfunction extends AddDeviceUI implements Price, List {
     public Calendar calendar;
     public SimpleDateFormat timeFormat;
     public String time;
@@ -21,13 +24,9 @@ public class KwHfunction implements Price, List {
     private static final DecimalFormat df = new DecimalFormat("0.00");
 
     /**
-     * toDo: Wenn eine stunde um ist Preis aktualiesieren und alle anderen verbunden Werte (vielleicht mit einem int und for-schleifen counter ?). Zeitspeichern wenn Programm zu ist.
-     */
+     for testing only
+     Checks whether element is selected and not empty */
 
-    /**
-     Für Test zwecke
-     Checkt ob Element ist Ausgewählt und nicht Leer
-     */
     public void actionPerformed(ActionEvent e) {
         if (e.getActionCommand().equals("Check")) {
             int index = list.getSelectedIndex();
@@ -39,12 +38,12 @@ public class KwHfunction implements Price, List {
 
     public KwHfunction() {
            /**
-           Für Test zwecke
-            */
+           for testing only */
+
            //System.out.println("Current KwH: " + kWh);
            //System.out.println("Current Watt: " + watt);
 
-           //Wenn aktiviert öffnet sich dass Fenster nicht. Thread hinzufügen?
+           //if activated, the window does not open. Add thread?
            //time();
     }
 
@@ -79,12 +78,6 @@ public class KwHfunction implements Price, List {
         return df.format(totalKwH) + " KwH";
     }
 
-    /**
-     * erstmal nur Deutschland bis funktion zur Länderwahl implementiert sind
-     * dann als parameter 'flag' implemtieren zur Länderwahl
-     * bsp.: public String euPrices(String flag){}
-     * individueller Nutzungsdauer durch User eingeben um Tagesverbrauch zuerrechnen
-     */
     public String euPrices(){
         double c = de_price * totalKwH / 100;
         return df.format(c) + " Euro";
