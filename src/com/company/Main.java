@@ -2,18 +2,14 @@ package com.company;
 
 import com.company.functions.KwHfunction;
 import com.company.ui.*;
-
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class Main
-{
-     static JFrame mainFrame = new JFrame();
+public class Main{
+    static JFrame mainFrame = new JFrame();
 
-
-    public static void main(String[] args)
-    {
+    public static void main(String[] args){
         SwingUtilities.invokeLater(new Runnable()
         {
             @Override
@@ -21,8 +17,6 @@ public class Main
                 //mit mehreren Threads arbeiten
                 createGUI();
                 new KwHfunction();
-
-
             }
         });
     }
@@ -104,11 +98,4 @@ public class Main
         mainFrame.setContentPane(root);
         mainFrame.setVisible(true);
     }
-
-
-
-
-
-
-
 }

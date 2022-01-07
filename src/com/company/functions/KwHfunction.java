@@ -3,13 +3,9 @@ package com.company.functions;
 import com.company.Data.List;
 import com.company.Data.Price;
 import com.company.DeviceList;
-import com.company.Main;
-
-
 import java.awt.event.ActionEvent;
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
-
 import java.util.Calendar;
 
 public class KwHfunction implements Price, List {
@@ -41,18 +37,12 @@ public class KwHfunction implements Price, List {
         }
     }
 
-
     public KwHfunction() {
            /**
            Für Test zwecke
             */
-
-
-
-
            //System.out.println("Current KwH: " + kWh);
            //System.out.println("Current Watt: " + watt);
-
 
            //Wenn aktiviert öffnet sich dass Fenster nicht. Thread hinzufügen?
            //time();
@@ -62,7 +52,6 @@ public class KwHfunction implements Price, List {
         timeFormat = new SimpleDateFormat("hh:mm");
         time = timeFormat.format(Calendar.getInstance().getTime());
         //System.out.println(time);
-
         setTime();
     }
 
@@ -79,15 +68,12 @@ public class KwHfunction implements Price, List {
     }
 
     public String consumption(){
-
         if(!model.isEmpty()){
             int index = list.getSelectedIndex();
             System.out.println("Index selected: " + index);
             DeviceList s =  list.getSelectedValue();
             System.out.println("Value Selected: " + s);
-
         }
-
         totalKwH = kWh * hour ;
 
         return df.format(totalKwH) + " KwH";
@@ -103,7 +89,4 @@ public class KwHfunction implements Price, List {
         double c = de_price * totalKwH / 100;
         return df.format(c) + " Euro";
     }
-
-
-
 }

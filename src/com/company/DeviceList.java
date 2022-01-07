@@ -14,6 +14,8 @@ public class DeviceList implements List {
         this.name = deviceNameTextfield;
         this.watt = deviceWattTextfield;
         this.usageTime = deviceNutzungTextfield;
+
+
     }
 
     @Override
