@@ -9,7 +9,7 @@ import java.awt.event.ActionListener;
 public class DeviceUI extends Main implements List {
     private JPanel devicePanel;
     private JButton backButton;
-    private JTable tableLivingRoom;
+    public JTable tableLivingRoom;
     private JScrollPane sp;
     private JTable tableKitchen;
     private JTable tableBedroom;

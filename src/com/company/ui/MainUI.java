@@ -22,7 +22,8 @@ public class MainUI extends KwHfunction{
     private String time;
 
     public MainUI() {
-        kWhTextField.setText(String.valueOf(consumption()));
+        versionLabel.setText("0.01a");
+        kWhTextField.setText(consumption());
         currencyTextField.setText(String.valueOf(euPrices()));
 
         //Disables Border for Textfields

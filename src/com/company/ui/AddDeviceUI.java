@@ -8,7 +8,7 @@ import java.awt.event.ActionListener;
 import java.util.Vector;
 
 
-public class AddDeviceUI extends Main implements List {
+public class AddDeviceUI extends DeviceUI implements List {
 
     private JPanel addDevicePanel;
     private JButton backButton;
@@ -20,6 +20,7 @@ public class AddDeviceUI extends Main implements List {
     private JRadioButton schlafzimmerRadioButton;
     private JRadioButton kücheRadioButton;
     protected Vector<String> data = new Vector<>();
+
 
     public AddDeviceUI() {
         // so that only one button can be selected at a time
@@ -46,21 +47,20 @@ public class AddDeviceUI extends Main implements List {
                 wTm.insertRow(0, data);
             }
             else {
-                System.out.println("Error");
+                System.out.println("Error - Textfield is Empty");
             }
             if(addButton.isEnabled() && schlafzimmerRadioButton.isSelected()){
                 sTm.insertRow(0,data);
             }else{
-                System.out.println("Error");
+                System.out.println("Error - Textfield is Empty");
             }
             if(addButton.isEnabled() && kücheRadioButton.isSelected()){
                 kTm.insertRow(0,data);
             }else{
-                System.out.println("Error");
+                System.out.println("Error - Textfield is Empty");
             }
         });
     }
-
     public JPanel getAddDevicePanel() {
         return addDevicePanel;
     }

@@ -27,7 +27,7 @@ public class Main{
     mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     mainFrame.setContentPane(root);
     mainFrame.pack();
-    mainFrame.setTitle("Prototype unstable");
+    mainFrame.setTitle("Project Zeus v0.01a unstable");
     mainFrame.setLocationRelativeTo(null);
     mainFrame.setSize(500,500);
     mainFrame.setResizable(false);

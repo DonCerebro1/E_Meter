@@ -2,16 +2,15 @@ package com.company.functions;
 
 import com.company.Data.List;
 import com.company.Data.Price;
-import com.company.DeviceList;
-import com.company.ui.AddDeviceUI;
+import com.company.ui.DeviceUI;
 
-import java.awt.event.ActionEvent;
+import javax.swing.*;
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 
-public class KwHfunction extends AddDeviceUI implements Price, List {
+public class KwHfunction extends DeviceUI implements Price, List {
     public Calendar calendar;
     public SimpleDateFormat timeFormat;
     public String time;
@@ -21,20 +20,8 @@ public class KwHfunction extends AddDeviceUI implements Price, List {
     public double hour = 1;
     public int hourYear = 1000;
     public double kWh = watt * hour / hourYear;
+    public int str;
     private static final DecimalFormat df = new DecimalFormat("0.00");
-
-    /**
-     for testing only
-     Checks whether element is selected and not empty */
-
-    public void actionPerformed(ActionEvent e) {
-        if (e.getActionCommand().equals("Check")) {
-            int index = list.getSelectedIndex();
-            System.out.println("Index Selected: " + index);
-            DeviceList s = list.getSelectedValue();
-            System.out.println("Value Selected: " + s);
-        }
-    }
 
     public KwHfunction() {
            /**
@@ -45,6 +32,8 @@ public class KwHfunction extends AddDeviceUI implements Price, List {
 
            //if activated, the window does not open. Add thread?
            //time();
+        consumption();
+
     }
 
     public void time(){
@@ -66,20 +55,42 @@ public class KwHfunction extends AddDeviceUI implements Price, List {
         }
     }
 
+    /*
+        Hier dran das nächstes mal weiter Arbeiten
+     */
     public String consumption(){
-        if(!model.isEmpty()){
-            int index = list.getSelectedIndex();
-            System.out.println("Index selected: " + index);
-            DeviceList s =  list.getSelectedValue();
-            System.out.println("Value Selected: " + s);
-        }
-        totalKwH = kWh * hour ;
+        int i;
+        int x;
 
-        return df.format(totalKwH) + " KwH";
+        Object obj  = getData(tableLivingRoom,0,1);
+        Object obj2 = getData(tableLivingRoom,1,1);
+        Object obj3 = getData(tableLivingRoom,2,1);
+        Object obj4 = getData(tableLivingRoom,3,1);
+        Object obj5 = getData(tableLivingRoom,4,1);
+
+
+
+
+        try {
+            int sum = (int) obj + (int) obj2 + (int) obj3 + (int) obj4 + (int) obj5;
+            System.out.println("Alles zusammen sind: " + sum);
+        }catch (Exception e){
+            System.out.println("Irgendwas läuft falsch");
+        }
+
+
+
+
+       // return df.format(obj) + " KwH";
+        return (String) obj + "KwH";
     }
 
     public String euPrices(){
         double c = de_price * totalKwH / 100;
         return df.format(c) + " Euro";
+    }
+
+    public Object getData(JTable tableLivingRoom, int row_index, int col_index){
+        return tableLivingRoom.getModel().getValueAt(row_index,col_index);
     }
 }
