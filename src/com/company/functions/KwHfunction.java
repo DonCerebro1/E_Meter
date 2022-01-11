@@ -3,8 +3,10 @@ package com.company.functions;
 import com.company.Data.List;
 import com.company.Data.Price;
 import com.company.ui.DeviceUI;
+import com.sun.jdi.InvocationException;
 
 import javax.swing.*;
+import java.lang.reflect.InvocationTargetException;
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -56,41 +58,62 @@ public class KwHfunction extends DeviceUI implements Price, List {
     }
 
     /*
-        Hier dran das nächstes mal weiter Arbeiten
+       Is working except he is only calculating if all Elements are inside.
+       Need to change it that he starts calculating if one element is inside.
      */
     public String consumption(){
-        int i;
-        int x;
-
-        Object obj  = getData(tableLivingRoom,0,1);
-        Object obj2 = getData(tableLivingRoom,1,1);
-        Object obj3 = getData(tableLivingRoom,2,1);
-        Object obj4 = getData(tableLivingRoom,3,1);
-        Object obj5 = getData(tableLivingRoom,4,1);
 
 
 
+        String objLv  = (String) getDataTableLiving(tableLivingRoom,0,1);
+        String obj2Lv = (String) getDataTableLiving(tableLivingRoom,1,1);
+        String obj3Lv = (String) getDataTableLiving(tableLivingRoom,2,1);
+        String obj4Lv = (String) getDataTableLiving(tableLivingRoom,3,1);
 
-        try {
-            int sum = (int) obj + (int) obj2 + (int) obj3 + (int) obj4 + (int) obj5;
-            System.out.println("Alles zusammen sind: " + sum);
-        }catch (Exception e){
-            System.out.println("Irgendwas läuft falsch");
+        String strOne = objLv;
+        String strTwo = obj2Lv;
+        String strThree = obj3Lv;
+        String strFour = obj4Lv;
+
+        int objOne = 0;
+        int objTwo = 0;
+        int objThree = 0;
+        int objFour = 0;
+        if(strOne != null && strTwo != null && strThree != null && strFour != null){
+            try {
+                objOne = Integer.parseInt(strOne);
+                objTwo = Integer.parseInt(strTwo);
+                objThree = Integer.parseInt(strThree);
+                objFour = Integer.parseInt(strFour);
+            }catch (NumberFormatException e){
+            }
         }
 
+        int sumLiving = objOne + objTwo + objThree + objFour;
+
+        System.out.println("Die Summe ist: " + sumLiving);
 
 
-
-       // return df.format(obj) + " KwH";
-        return (String) obj + "KwH";
+        return df.format(sumLiving) + " KwH";
     }
+
+
 
     public String euPrices(){
         double c = de_price * totalKwH / 100;
         return df.format(c) + " Euro";
     }
 
-    public Object getData(JTable tableLivingRoom, int row_index, int col_index){
+    //gets the Value inside all JTable in specific row and col
+    public Object getDataTableLiving(JTable tableLivingRoom, int row_index, int col_index){
         return tableLivingRoom.getModel().getValueAt(row_index,col_index);
     }
+    public Object getDataTableKitchen(JTable tableKitchen,int row_index, int col_index){
+        return tableKitchen.getModel().getValueAt(row_index,col_index);
+    }
+    public Object getDataTableBedroom(JTable tableBedroom, int row_index, int col_index){
+        return tableBedroom.getModel().getValueAt(row_index,col_index);
+    }
+
+
 }

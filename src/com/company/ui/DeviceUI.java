@@ -5,14 +5,15 @@ import com.company.Main;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Vector;
 
 public class DeviceUI extends Main implements List {
     private JPanel devicePanel;
     private JButton backButton;
-    public JTable tableLivingRoom;
+    protected JTable tableLivingRoom;
     private JScrollPane sp;
-    private JTable tableKitchen;
-    private JTable tableBedroom;
+    protected JTable tableKitchen;
+    protected JTable tableBedroom;
 
     public DeviceUI() {
         backButton.addActionListener(new ActionListener() {
@@ -57,6 +58,11 @@ public class DeviceUI extends Main implements List {
 
         wTm.setColumnCount(3);
         wTm.setRowCount(5);
+
+        //last Row for total Count
+        Vector<Integer> sum = new Vector<Integer>();
+
+
     }
     
     public JPanel getDevicePanel() {

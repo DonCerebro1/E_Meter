@@ -47,17 +47,17 @@ public class AddDeviceUI extends DeviceUI implements List {
                 wTm.insertRow(0, data);
             }
             else {
-                System.out.println("Error - Textfield is Empty");
+                //System.out.println("Error - Textfield is Empty");
             }
             if(addButton.isEnabled() && schlafzimmerRadioButton.isSelected()){
                 sTm.insertRow(0,data);
             }else{
-                System.out.println("Error - Textfield is Empty");
+                //System.out.println("Error - Textfield is Empty");
             }
             if(addButton.isEnabled() && kücheRadioButton.isSelected()){
                 kTm.insertRow(0,data);
             }else{
-                System.out.println("Error - Textfield is Empty");
+                //System.out.println("Error - Textfield is Empty");
             }
         });
     }
