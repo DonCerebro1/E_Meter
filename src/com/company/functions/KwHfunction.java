@@ -3,12 +3,10 @@ package com.company.functions;
 import com.company.Data.List;
 import com.company.Data.Price;
 import com.company.ui.DeviceUI;
-
 import javax.swing.*;
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
-
 
 public class KwHfunction extends DeviceUI implements Price, List {
     public Calendar calendar;
@@ -20,7 +18,7 @@ public class KwHfunction extends DeviceUI implements Price, List {
     public double hour = 1;
     public int hourYear = 1000;
     public double kWh = watt * hour / hourYear;
-    public int str;
+    public double total;
     private static final DecimalFormat df = new DecimalFormat("0.00");
 
     public KwHfunction() {
@@ -58,17 +56,11 @@ public class KwHfunction extends DeviceUI implements Price, List {
         }
     }
 
-    /*
-       Excepts only double with a "." not ","
-       toDo: Aktzeptiert das format nicht "Cannot format given Object as an Number"
-
-     */
     public String totalConsumtion(){
-
         double consumptionLiving = consumptionLiving();
         double consumptionKitchen = consumptionKitchen();
         double consumptionBedRoom = consumptionBedRoom();
-        double total = consumptionLiving +consumptionBedRoom+consumptionKitchen;
+        total = consumptionLiving +consumptionBedRoom+consumptionKitchen;
         return  String.valueOf(df.format(total));
     }
 
@@ -122,6 +114,7 @@ public class KwHfunction extends DeviceUI implements Price, List {
             }
         }
         double sumLiving = objOne + objTwo + objThree + objFour + objFive;
+        sumLiving = sumLiving / 1000;
 
         return sumLiving;
     }
@@ -176,6 +169,7 @@ public class KwHfunction extends DeviceUI implements Price, List {
             }
         }
         double sumKitchen = objOne + objTwo + objThree + objFour + objFive;
+        sumKitchen = sumKitchen / 1000;
 
         return sumKitchen;
     }
@@ -230,16 +224,16 @@ public class KwHfunction extends DeviceUI implements Price, List {
             }
         }
         double sumBed = objOne + objTwo + objThree + objFour + objFive;
+        sumBed = sumBed / 1000;
 
         return sumBed;
 
     }
 
     public String euPrices(){
-        double c = de_price * totalKwH / 100;
-        return df.format(c) + " Euro";
+        double totalPrice = de_price * total;
+        return df.format(totalPrice) + " Euro";
     }
-
     //gets the Value inside all JTable in specific row and col
     public Object getDataTableLiving(JTable tableLivingRoom, int row_index, int col_index){
         return tableLivingRoom.getModel().getValueAt(row_index,col_index);
@@ -250,8 +244,5 @@ public class KwHfunction extends DeviceUI implements Price, List {
     public Object getDataTableBedroom(JTable tableBedroom, int row_index, int col_index){
         return tableBedroom.getModel().getValueAt(row_index,col_index);
     }
-
-
-
 
 }
