@@ -3,10 +3,8 @@ package com.company.functions;
 import com.company.Data.List;
 import com.company.Data.Price;
 import com.company.ui.DeviceUI;
-import com.sun.jdi.InvocationException;
 
 import javax.swing.*;
-import java.lang.reflect.InvocationTargetException;
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -36,7 +34,7 @@ public class KwHfunction extends DeviceUI implements Price, List {
            //time();
         //consumption();
 
-        System.out.println(totalConsumtion());
+        //System.out.println(totalConsumtion());
 
 
     }
@@ -62,15 +60,19 @@ public class KwHfunction extends DeviceUI implements Price, List {
 
     /*
        Excepts only double with a "." not ","
-       toDo: Next....Change Format for totalConsumption to display in Textfield
+       toDo: Aktzeptiert das format nicht "Cannot format given Object as an Number"
+
      */
     public String totalConsumtion(){
-        String totalConsumption = consumptionLiving() + consumptionKitchen() + consumptionBedRoom();
 
-        return  totalConsumption + " KwH";
+        double consumptionLiving = consumptionLiving();
+        double consumptionKitchen = consumptionKitchen();
+        double consumptionBedRoom = consumptionBedRoom();
+        double total = consumptionLiving +consumptionBedRoom+consumptionKitchen;
+        return  String.valueOf(df.format(total));
     }
 
-    public String consumptionLiving(){
+    public double consumptionLiving(){
         String objLv  = (String) getDataTableLiving(tableLivingRoom,0,1);
         String obj2Lv = (String) getDataTableLiving(tableLivingRoom,1,1);
         String obj3Lv = (String) getDataTableLiving(tableLivingRoom,2,1);
@@ -121,10 +123,10 @@ public class KwHfunction extends DeviceUI implements Price, List {
         }
         double sumLiving = objOne + objTwo + objThree + objFour + objFive;
 
-        return df.format(sumLiving) + " KwH";
+        return sumLiving;
     }
 
-    public String consumptionKitchen(){
+    public double consumptionKitchen(){
         String objK  = (String) getDataTableKitchen(tableKitchen,0,1);
         String objK2 = (String) getDataTableKitchen(tableKitchen,1,1);
         String objK3 = (String) getDataTableKitchen(tableKitchen,2,1);
@@ -175,10 +177,10 @@ public class KwHfunction extends DeviceUI implements Price, List {
         }
         double sumKitchen = objOne + objTwo + objThree + objFour + objFive;
 
-        return df.format(sumKitchen) + " KwH";
+        return sumKitchen;
     }
 
-    public String consumptionBedRoom(){
+    public double consumptionBedRoom(){
         String objB  = (String) getDataTableBedroom(tableBedroom,0,1);
         String objB2 = (String) getDataTableBedroom(tableBedroom,1,1);
         String objB3 = (String) getDataTableBedroom(tableBedroom,2,1);
@@ -229,7 +231,7 @@ public class KwHfunction extends DeviceUI implements Price, List {
         }
         double sumBed = objOne + objTwo + objThree + objFour + objFive;
 
-        return df.format(sumBed) + " KwH";
+        return sumBed;
 
     }
 
@@ -248,6 +250,8 @@ public class KwHfunction extends DeviceUI implements Price, List {
     public Object getDataTableBedroom(JTable tableBedroom, int row_index, int col_index){
         return tableBedroom.getModel().getValueAt(row_index,col_index);
     }
+
+
 
 
 }
