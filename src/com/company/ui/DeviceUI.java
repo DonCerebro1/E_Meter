@@ -1,23 +1,19 @@
 package com.company.ui;
 
 import com.company.Data.List;
-import com.company.DeviceList;
-import com.company.HomeRooms;
 import com.company.Main;
-
 import javax.swing.*;
-import javax.swing.event.ListSelectionEvent;
-import javax.swing.event.ListSelectionListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
+import java.util.Vector;
 
 public class DeviceUI extends Main implements List {
     private JPanel devicePanel;
     private JButton backButton;
-    private JSplitPane splitPane;
-    private JLabel label;
-
+    protected JTable tableLivingRoom;
+    private JScrollPane sp;
+    protected JTable tableKitchen;
+    protected JTable tableBedroom;
 
     public DeviceUI() {
         backButton.addActionListener(new ActionListener() {
@@ -28,46 +24,48 @@ public class DeviceUI extends Main implements List {
                 }
             }
         });
-
-        /**************Liste der Geräte************
-         * Label geht nicht!!!!**
-         * Bug wenn Gerät hinzugefügt wird verdoppeln sich teilweise die Räume auf
-         * der Linken seite ------> liegt am Textfield "WOhnbereich" im AddDeviceUI
-         * wenn die liste geöffnet wird und wieder zurück in Menu dann wieder auf die
-         * Liste verdoppeln sich die Einträge
-         *
-         * Beim Drücken der Linkenseite sollen nur die Geräte angezeigt werden, die
-         * für den Raum vorgesehen sind.
-         *
-         * Muß Dauerhaft abegspeichert werden die Liste
-         * */
-
-        roomList.setModel(roomModel);
-        //roomModel.addElement(new HomeRooms("Badezimmer"));
-        //roomModel.addElement(new HomeRooms("Küche"));
-        //roomModel.addElement(new HomeRooms("Schlafzimmer"));
-        //roomModel.addElement(new HomeRooms("Wohnzimmer"));
-
-
-        list.setModel(model);
-        splitPane.setRightComponent(new JScrollPane(list));
-        splitPane.setLeftComponent(new JScrollPane(roomList));
-        //devicePanel.add(label);
-
-        list.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
-            @Override
-            public void valueChanged(ListSelectionEvent e) {
-                HomeRooms dl = roomList.getSelectedValue();
-                //label.setText(dl.getName());
-
-            }
-        });
+        createTable();
     }
 
+    private void createTable(){
+        //sets model for all JTables
+        tableKitchen.setModel(kTm);
+        tableBedroom.setModel(sTm);
+        tableLivingRoom.setModel(wTm);
+
+        //adds columns
+        //Table for Kitchen
+        kTm.addColumn("Name");
+        kTm.addColumn("Watt");
+        kTm.addColumn("Nutzungsdauer");
+
+        //Table for bedroom
+        sTm.addColumn("Name");
+        sTm.addColumn("Watt");
+        sTm.addColumn("Nutzungsdauer");
+
+        //Table for living room
+        wTm.addColumn("Name");
+        wTm.addColumn("Watt");
+        wTm.addColumn("Nutzungsdauer");
+
+        //Maximum for Column and rows und can be created
+        kTm.setColumnCount(3);
+        kTm.setRowCount(5);
+
+        sTm.setColumnCount(3);
+        sTm.setRowCount(5);
+
+        wTm.setColumnCount(3);
+        wTm.setRowCount(5);
+
+        //last Row for total Count
+        Vector<Integer> sum = new Vector<Integer>();
+
+
+    }
+    
     public JPanel getDevicePanel() {
         return devicePanel;
     }
-
-
-
 }

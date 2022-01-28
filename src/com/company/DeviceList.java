@@ -2,8 +2,6 @@ package com.company;
 
 import com.company.Data.List;
 
-
-
 public class DeviceList implements List {
     int id;
     String name;

@@ -1,19 +1,11 @@
 package com.company.ui;
 
 import javax.swing.*;
-import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
-import java.util.Date;
 import com.company.functions.KwHfunction;
 
-
-public class MainUI extends KwHfunction
-{
-
+public class MainUI extends KwHfunction{
     private JPanel rootPanel;
     private JButton optionsButton;
     private JButton addDevicesButton;
@@ -29,10 +21,14 @@ public class MainUI extends KwHfunction
     private SimpleDateFormat timeFormat;
     private String time;
 
-
     public MainUI() {
-        kWhTextField.setText(String.valueOf(consumption()));
+        versionLabel.setText("0.01a");
+        kWhTextField.setText(totalConsumtion());
         currencyTextField.setText(String.valueOf(euPrices()));
+
+        //Disables Border for Textfields
+        kWhTextField.setBorder(null);
+        currencyTextField.setBorder(null);
     }
 
     public JPanel getRootPanel(){return rootPanel;}
@@ -50,7 +46,5 @@ public class MainUI extends KwHfunction
     public JButton getDevicesButton() {
         return devicesButton;
     }
-
-
 }
 

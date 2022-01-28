@@ -2,17 +2,13 @@ package com.company.functions;
 
 import com.company.Data.List;
 import com.company.Data.Price;
-import com.company.DeviceList;
-import com.company.Main;
-
-
-import java.awt.event.ActionEvent;
+import com.company.ui.DeviceUI;
+import javax.swing.*;
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
-
 import java.util.Calendar;
 
-public class KwHfunction implements Price, List {
+public class KwHfunction extends DeviceUI implements Price, List {
     public Calendar calendar;
     public SimpleDateFormat timeFormat;
     public String time;
@@ -22,47 +18,29 @@ public class KwHfunction implements Price, List {
     public double hour = 1;
     public int hourYear = 1000;
     public double kWh = watt * hour / hourYear;
+    public double total;
     private static final DecimalFormat df = new DecimalFormat("0.00");
-
-    /**
-     * toDo: Wenn eine stunde um ist Preis aktualiesieren und alle anderen verbunden Werte (vielleicht mit einem int und for-schleifen counter ?). Zeitspeichern wenn Programm zu ist.
-     */
-
-    /**
-     Für Test zwecke
-     Checkt ob Element ist Ausgewählt und nicht Leer
-     */
-    public void actionPerformed(ActionEvent e) {
-        if (e.getActionCommand().equals("Check")) {
-            int index = list.getSelectedIndex();
-            System.out.println("Index Selected: " + index);
-            DeviceList s = list.getSelectedValue();
-            System.out.println("Value Selected: " + s);
-        }
-    }
-
 
     public KwHfunction() {
            /**
-           Für Test zwecke
-            */
-
-
-
+           for testing only */
 
            //System.out.println("Current KwH: " + kWh);
            //System.out.println("Current Watt: " + watt);
 
-
-           //Wenn aktiviert öffnet sich dass Fenster nicht. Thread hinzufügen?
+           //if activated, the window does not open. Add thread?
            //time();
+        //consumption();
+
+        //System.out.println(totalConsumtion());
+
+
     }
 
     public void time(){
         timeFormat = new SimpleDateFormat("hh:mm");
         time = timeFormat.format(Calendar.getInstance().getTime());
         //System.out.println(time);
-
         setTime();
     }
 
@@ -78,32 +56,193 @@ public class KwHfunction implements Price, List {
         }
     }
 
-    public String consumption(){
+    public String totalConsumtion(){
+        double consumptionLiving = consumptionLiving();
+        double consumptionKitchen = consumptionKitchen();
+        double consumptionBedRoom = consumptionBedRoom();
+        total = consumptionLiving +consumptionBedRoom+consumptionKitchen;
+        return  String.valueOf(df.format(total));
+    }
 
-        if(!model.isEmpty()){
-            int index = list.getSelectedIndex();
-            System.out.println("Index selected: " + index);
-            DeviceList s =  list.getSelectedValue();
-            System.out.println("Value Selected: " + s);
+    public double consumptionLiving(){
+        String objLv  = (String) getDataTableLiving(tableLivingRoom,0,1);
+        String obj2Lv = (String) getDataTableLiving(tableLivingRoom,1,1);
+        String obj3Lv = (String) getDataTableLiving(tableLivingRoom,2,1);
+        String obj4Lv = (String) getDataTableLiving(tableLivingRoom,3,1);
+        String obj5LV = (String) getDataTableLiving(tableLivingRoom,4,1);
 
+        String strOne = objLv;
+        String strTwo = obj2Lv;
+        String strThree = obj3Lv;
+        String strFour = obj4Lv;
+        String strFive = obj5LV;
+
+        double objOne = 0;
+        double objTwo = 0;
+        double objThree = 0;
+        double objFour = 0;
+        double objFive = 0;
+
+        if(strOne != null){
+            try {
+                objOne = Double.parseDouble(strOne);
+            }catch (NumberFormatException e){
+            }
         }
+        if(strTwo != null){
+            try {
+                objTwo = Double.parseDouble(strTwo);
+            }catch (NumberFormatException e){
+            }
+        }
+        if(strThree != null){
+            try {
+                objThree = Double.parseDouble(strThree);
+            }catch (NumberFormatException e){
+            }
+        }
+        if(strFour != null){
+            try{
+                objFour = Double.parseDouble(strFour);
+            }catch (NumberFormatException e){
+            }
+        }
+        if(strFive != null){
+            try {
+                objFive = Double.parseDouble(strFive);
+            }catch (NumberFormatException e){
+            }
+        }
+        double sumLiving = objOne + objTwo + objThree + objFour + objFive;
+        sumLiving = sumLiving / 1000;
 
-        totalKwH = kWh * hour ;
-
-        return df.format(totalKwH) + " KwH";
+        return sumLiving;
     }
 
-    /**
-     * erstmal nur Deutschland bis funktion zur Länderwahl implementiert sind
-     * dann als parameter 'flag' implemtieren zur Länderwahl
-     * bsp.: public String euPrices(String flag){}
-     * individueller Nutzungsdauer durch User eingeben um Tagesverbrauch zuerrechnen
-     */
+    public double consumptionKitchen(){
+        String objK  = (String) getDataTableKitchen(tableKitchen,0,1);
+        String objK2 = (String) getDataTableKitchen(tableKitchen,1,1);
+        String objK3 = (String) getDataTableKitchen(tableKitchen,2,1);
+        String objK4 = (String) getDataTableKitchen(tableKitchen,3,1);
+        String objK5 = (String) getDataTableKitchen(tableKitchen,4,1);
+
+        String strOne = objK;
+        String strTwo = objK2;
+        String strThree = objK3;
+        String strFour = objK4;
+        String strFive = objK5;
+
+        double objOne = 0;
+        double objTwo = 0;
+        double objThree = 0;
+        double objFour = 0;
+        double objFive = 0;
+
+        if(strOne != null){
+            try {
+                objOne = Double.parseDouble(strOne);
+            }catch (NumberFormatException e){
+            }
+        }
+        if(strTwo != null){
+            try {
+                objTwo = Double.parseDouble(strTwo);
+            }catch (NumberFormatException e){
+            }
+        }
+        if(strThree != null){
+            try {
+                objThree = Double.parseDouble(strThree);
+            }catch (NumberFormatException e){
+            }
+        }
+        if(strFour != null){
+            try{
+                objFour = Double.parseDouble(strFour);
+            }catch (NumberFormatException e){
+            }
+        }
+        if(strFive != null){
+            try {
+                objFive = Double.parseDouble(strFive);
+            }catch (NumberFormatException e){
+            }
+        }
+        double sumKitchen = objOne + objTwo + objThree + objFour + objFive;
+        sumKitchen = sumKitchen / 1000;
+
+        return sumKitchen;
+    }
+
+    public double consumptionBedRoom(){
+        String objB  = (String) getDataTableBedroom(tableBedroom,0,1);
+        String objB2 = (String) getDataTableBedroom(tableBedroom,1,1);
+        String objB3 = (String) getDataTableBedroom(tableBedroom,2,1);
+        String objB4 = (String) getDataTableBedroom(tableBedroom,3,1);
+        String objB5 = (String) getDataTableBedroom(tableBedroom,4,1);
+
+        String strOne = objB;
+        String strTwo = objB2;
+        String strThree = objB3;
+        String strFour = objB4;
+        String strFive = objB5;
+
+        double objOne = 0;
+        double objTwo = 0;
+        double objThree = 0;
+        double objFour = 0;
+        double objFive = 0;
+
+        if(strOne != null){
+            try {
+                objOne = Double.parseDouble(strOne);
+            }catch (NumberFormatException e){
+            }
+        }
+        if(strTwo != null){
+            try {
+                objTwo = Double.parseDouble(strTwo);
+            }catch (NumberFormatException e){
+            }
+        }
+        if(strThree != null){
+            try {
+                objThree = Double.parseDouble(strThree);
+            }catch (NumberFormatException e){
+            }
+        }
+        if(strFour != null){
+            try{
+                objFour = Double.parseDouble(strFour);
+            }catch (NumberFormatException e){
+            }
+        }
+        if(strFive != null){
+            try {
+                objFive = Double.parseDouble(strFive);
+            }catch (NumberFormatException e){
+            }
+        }
+        double sumBed = objOne + objTwo + objThree + objFour + objFive;
+        sumBed = sumBed / 1000;
+
+        return sumBed;
+
+    }
+
     public String euPrices(){
-        double c = de_price * totalKwH / 100;
-        return df.format(c) + " Euro";
+        double totalPrice = de_price * total;
+        return df.format(totalPrice) + " Euro";
     }
-
-
+    //gets the Value inside all JTable in specific row and col
+    public Object getDataTableLiving(JTable tableLivingRoom, int row_index, int col_index){
+        return tableLivingRoom.getModel().getValueAt(row_index,col_index);
+    }
+    public Object getDataTableKitchen(JTable tableKitchen,int row_index, int col_index){
+        return tableKitchen.getModel().getValueAt(row_index,col_index);
+    }
+    public Object getDataTableBedroom(JTable tableBedroom, int row_index, int col_index){
+        return tableBedroom.getModel().getValueAt(row_index,col_index);
+    }
 
 }

@@ -1,16 +1,14 @@
 package com.company.ui;
 
 import com.company.Data.List;
-import com.company.DeviceList;
-import com.company.HomeRooms;
 import com.company.Main;
-
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Vector;
 
 
-public class AddDeviceUI extends Main implements List {
+public class AddDeviceUI extends DeviceUI implements List {
 
     private JPanel addDevicePanel;
     private JButton backButton;
@@ -18,72 +16,48 @@ public class AddDeviceUI extends Main implements List {
     private JTextField deviceNutzungTextfield;
     private JTextField deviceWattTextfield;
     private JTextField deviceNameTextfield;
-    private JRadioButton radioButtonLamp;
-    private JRadioButton radioButtonTv;
     private JRadioButton radioButtonWhz;
     private JRadioButton schlafzimmerRadioButton;
     private JRadioButton kücheRadioButton;
-    private JRadioButton badezimmerRadioButton;
+    protected Vector<String> data = new Vector<>();
+
 
     public AddDeviceUI() {
+        // so that only one button can be selected at a time
+        ButtonGroup group = new ButtonGroup();
+        group.add(radioButtonWhz);
+        group.add(schlafzimmerRadioButton);
+        group.add(kücheRadioButton);
+
         backButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if(backButton.isEnabled()){
                     createGUI();
                 }
+            }
+        });
 
-
+        addButton.addActionListener(e -> {
+            //Add Device here.....
+            data.addElement(deviceNameTextfield.getText());
+            data.addElement(deviceWattTextfield.getText());
+            data.addElement(deviceNutzungTextfield.getText());
+            if(addButton.isEnabled() && radioButtonWhz.isSelected()){
+                wTm.insertRow(0, data);
             }
-        });
-        /***
-         * Darf nur ein Raum gleichzeitig ausgewählt werden
-         * Darf nur jeweils ein Zimmer vom gleichen Typ erstellt werden!!
-         */
-        addButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                if(addButton.isEnabled()){
-                    model.addElement(new DeviceList(deviceNameTextfield.getText(),deviceWattTextfield.getText(),deviceNutzungTextfield.getText()));
-                }else if(addButton.isEnabled() && schlafzimmerRadioButton.isEnabled()){
-                    model.addElement(new DeviceList(deviceNameTextfield.getText(),deviceWattTextfield.getText(),deviceNutzungTextfield.getText()));
-                }else if(addButton.isEnabled() && kücheRadioButton.isEnabled()){
-                    model.addElement(new DeviceList(deviceNameTextfield.getText(),deviceWattTextfield.getText(),deviceNutzungTextfield.getText()));
-                }else if(addButton.isEnabled() && badezimmerRadioButton.isEnabled()){
-                    model.addElement(new DeviceList(deviceNameTextfield.getText(),deviceWattTextfield.getText(),deviceNutzungTextfield.getText()));
-                }
+            else {
+                //System.out.println("Error - Textfield is Empty");
             }
-        });
-        radioButtonWhz.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                if(radioButtonWhz.isEnabled()){
-                    roomModel.addElement(new HomeRooms("Wohnzimmer"));
-                }
+            if(addButton.isEnabled() && schlafzimmerRadioButton.isSelected()){
+                sTm.insertRow(0,data);
+            }else{
+                //System.out.println("Error - Textfield is Empty");
             }
-        });
-        schlafzimmerRadioButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                if(schlafzimmerRadioButton.isEnabled()){
-                    roomModel.addElement(new HomeRooms("Schlafzimmer"));
-                }
-            }
-        });
-        kücheRadioButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                if(kücheRadioButton.isEnabled()){
-                    roomModel.addElement(new HomeRooms("Küche"));
-                }
-            }
-        });
-        badezimmerRadioButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                if(badezimmerRadioButton.isEnabled()){
-                    roomModel.addElement(new HomeRooms("Badezimmer"));
-                }
+            if(addButton.isEnabled() && kücheRadioButton.isSelected()){
+                kTm.insertRow(0,data);
+            }else{
+                //System.out.println("Error - Textfield is Empty");
             }
         });
     }
